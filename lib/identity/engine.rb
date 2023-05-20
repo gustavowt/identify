@@ -10,10 +10,10 @@ module Identity
       Devise::PasswordsController.layout 'identity/application'
     end
 
-    engine_factories_path = root.join('spec', 'factories')
-
-    ActiveSupport.on_load(:factory_bot) do
-      FactoryBot.definition_file_paths.unshift engine_factories_path
+    config.generators do |g|
+      g.test_framework :rspec
+      g.fixture_replacement :factory_bot
+      g.factory_bot dir: 'spec/factories'
     end
   end
 end
